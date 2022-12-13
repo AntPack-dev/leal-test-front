@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { MediaCardStyle } from '../../../styles/components/common/card/MediaCardStyle';
 import BuyForm from '../buyForm/buyForm';
+import { toast } from 'react-toastify';
 
 
 interface mediaCardProps {
@@ -45,6 +46,7 @@ export default function MediaCard({ data, itemsSelected, setItemsSelected }: med
           } else {
             setItemsSelected([data])
           }
+          toast.success(`Added: ${data.name}`)
         }} style={{ height: '30px' }} variant='outlined'>add</Button>
         <BuyForm itemsSelected={itemsSelected} setItemsSelected={setItemsSelected} product={data} />
       </CardActions>

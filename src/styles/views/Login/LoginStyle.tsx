@@ -3,7 +3,7 @@ import { style } from 'typestyle';
 import { Color } from '../../GlobalStyle';
 
 export const LoginStyle = style({
-  backgroundColor: Color.blackBg,
+  backgroundColor: 'inherit',
   $nest: {
     '& .ctn-btn-login': {
       zIndex: 9999,

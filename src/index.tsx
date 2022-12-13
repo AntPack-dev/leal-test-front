@@ -12,7 +12,7 @@ ReactDOM.render(
   <React.StrictMode>
     <AuthProvider>
       <App />
-      <ToastContainer 
+      <ToastContainer
         position="bottom-right"
         autoClose={5000}
         hideProgressBar={false}

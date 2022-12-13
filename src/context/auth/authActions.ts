@@ -10,36 +10,9 @@ export const register = (data: UserRegister, history: any) => {
     .post('/users/register', data);
 }
 
-
-export const resetPassword = (email: string, history: any) => {
-  return axiosInstance(history)
-  .post('/users/auth/password-reset', { email });
-}
-
-export const updatePassword = (password: string, history: any, token: any) => {
-  return axiosInstance(history, token)
-  .put('/users/auth/password-update', { password });
-}
-
 export const getProducts = (history: any) => {
   return axiosInstance()
     .get('/api/products/');
-}
-
-export const getAllPartners = (history: any) => {
-  return axiosInstance(history)
-    .get('/partners');
-}
-
-export const addPartnerToUser = (userId: number, partnerId: number, history: any) => {
-  const data = {
-    data: {
-      user: userId,
-      partner: partnerId
-    }
-  }
-  return axiosInstance(history)
-    .post('/user-partners?populate=user,partner', data);
 }
 
 export interface UserRegister {

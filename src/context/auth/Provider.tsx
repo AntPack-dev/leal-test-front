@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 
 import AuthContext from './index';
-import { getProducts, login, register, resetPassword, UserRegister, updatePassword } from "./authActions";
+import { getProducts, login, register, UserRegister } from "./authActions";
 import { toast } from 'react-toastify';
 
 const AuthProvider = ({ children }: any) => {

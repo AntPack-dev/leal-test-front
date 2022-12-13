@@ -42,7 +42,7 @@ const Login = () => {
 		<div className={LoginStyle}>
 			<div className="ctn-btn-login">
 				<div className="btns">
-					<button
+					{/* <button
 						onClick={() => {
 							setForm('register');
 							handleOpen();
@@ -50,7 +50,7 @@ const Login = () => {
 						className="regístrate_button"
 					>
 						SIGN UP
-					</button>
+					</button> */}
 					<button
 						onClick={() => {
 							setForm('login');

@@ -102,18 +102,11 @@ const currentProd = {
 }
 
 
-interface IRoutes {
-  id: number,
-  platform: string,
-  path: string,
-  component: any
-}
-
 const Home = () => {
-  const { pathname } = useLocation();
   const history = useHistory();
   const { isAuthenticated, getProducts, products } = useContext<any>(AuthContext);
   const [itemsSelected, setItemsSelected] = useState<any>()
+  const [theme, setTheme] = useState<any>(true)
 
   const handleGetProducts = async () => {
     try {
@@ -136,16 +129,18 @@ const Home = () => {
 
   return (
     <>
-      <Header />
-      <Grid container margin={'200px auto 200px auto'} width={'80%'} spacing={2}>
-        {
-          currentProd?.data.map((item, index) => (
-            <Grid key={`item${index}`} item xs={6} md={3}>
-              <MediaCard itemsSelected={itemsSelected} setItemsSelected={setItemsSelected} data={item} />
-            </Grid>
-          ))
-        }
-      </Grid>
+      <Header setTheme={setTheme} theme={theme} />
+      <div style={{ background: (theme ? "rgb(255, 156, 91)" : "#D9EEEF") }}>
+        <Grid container margin={'50px auto 0 auto'} padding={'100px 0'} width={'80%'} spacing={2}>
+          {
+            currentProd?.data.map((item, index) => (
+              <Grid key={`item${index}`} item xs={12} sm={6} md={4} lg={3}>
+                <MediaCard itemsSelected={itemsSelected} setItemsSelected={setItemsSelected} data={item} />
+              </Grid>
+            ))
+          }
+        </Grid>
+      </div>
     </>
   );
 };
