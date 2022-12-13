@@ -1,0 +1,117 @@
+@font-face {
+  font-family: 'Gilroy-Black';
+  src: url('./assets/fonts/gilroy-black.ttf');
+}
+
+@font-face {
+  font-family: 'Gilroy-Bold';
+  src: url('./assets/fonts/gilroy-bold.ttf');
+}
+
+@font-face {
+  font-family: 'Gilroy-Light';
+  src: url('./assets/fonts/gilroy-light.otf');
+}
+
+@font-face {
+  font-family: 'Gilroy-Regular';
+  src: url('./assets/fonts/Gilroy-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Gilroy-Medium';
+  src: url('./assets/fonts/Gilroy-Medium.ttf');
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+
+.login_inputs__container {
+  display: flex;
+  text-align: start;
+  flex-direction: column;
+}
+
+.login_inputs__container>label {
+  color: #ffffff;
+  font-size: 15px;
+  margin: 5px 0;
+  font-family: 'Gilroy-Black';
+
+}
+
+.login_inputs__container>input {
+  outline: none;
+  border: none;
+  height: 44px;
+  margin-bottom: 20px;
+  padding: 0 8px !important;
+}
+
+.login_inputs__container>a {
+  font-size: 14px;
+  margin: 2px;
+  color: #fff;
+  font-family: 'Gilroy-Medium';
+}
+
+.swal2-confirm {
+  padding: 15px;
+  margin-left: 220px;
+  width: 140px;
+  border-radius: 35px !important;
+  background-color: #fff !important;
+  color: black !important;
+  font-family: 'Gilroy-Black';
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.swal2-image {
+  margin: 20px auto 0 auto;
+}
+
+.swal2-popup {
+  border-radius: 22px;
+}
+
+._contentForm {
+  display: flex;
+  justify-content: center;
+  /* max-height: 85vh; */
+  overflow: auto;
+  color: #fff;
+}
+
+.mobile-chat-container {
+  z-index: 100 !important;
+}
+
+.wrapper {
+  width: 1280px;
+  margin: auto;
+}
+
+@media (max-width:700px) {
+  .wrapper {
+    width: 100%;
+  }
+  ._contentForm{
+    /* max-height: 100%; */
+    overflow-x: hidden;
+  }
+}
