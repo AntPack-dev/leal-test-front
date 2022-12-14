@@ -5,7 +5,6 @@ import axios from 'axios';
 
 import { LoginFormStyle } from '../../../styles/components/common/LoginForm/LoginFormStyle';
 import { SmallTitle, PrincipalInput, PrincipalButton } from '../../../styles/GlobalStyle';
-import AuthContext from "../../../context/auth";
 
 const validate = (values: any) => {
   const errors: any = {};
@@ -33,7 +32,6 @@ const validate = (values: any) => {
 
 const RegisterForm = ({ setForm }: { setForm: any }) => {
   const history = useHistory();
-  const { onRegister } = useContext<any>(AuthContext);
   // const [ select, setSelect ] = useState('');
   const [countriesData, setCountriesData]: any = useState();
   const [operators, setOperators]: any = useState();
@@ -69,11 +67,7 @@ const RegisterForm = ({ setForm }: { setForm: any }) => {
 
 
   const handleRegister = async (values: any) => {
-    try {
-      const res: any = await onRegister(values, history);
-    } catch (e) {
-      console.error(e);
-    }
+
   }
 
   return (

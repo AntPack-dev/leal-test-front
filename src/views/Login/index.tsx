@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import AuthContext from '../../context/auth';
 import { LoginStyle } from '../../styles/views/Login/LoginStyle';
 
 import LoginForm from '../../components/common/LoginForm/LoginForm';
@@ -16,13 +15,11 @@ const Login = () => {
 	const handleClose = () => setOpen(false);
 
 	const history = useHistory();
-	const { isAuthenticated }: any = useContext(AuthContext);
 
 	const checkIfUserIsAuthRef: React.MutableRefObject<any> = useRef();
 
 	const checkIfUserIsAuth = () => {
-		// Si esta autenticado
-		if (isAuthenticated()) history.push('/home');
+
 	};
 
 	checkIfUserIsAuthRef.current = checkIfUserIsAuth;

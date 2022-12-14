@@ -8,9 +8,7 @@ import Switch from '@mui/material/Switch';
 
 
 import { HeaderStyle } from '../../styles/components/layout/HeaderStyle';
-import AuthContext from '../../context/auth';
 
-import MenuIcon from '@mui/icons-material/Menu';
 import { Grid, IconButton } from '@mui/material';
 import Login from '../../views/Login';
 import BuyForm from '../common/buyForm/buyForm';
@@ -43,7 +41,9 @@ export function Header({ theme, setTheme, itemsSelected, setItemsSelected }: hea
 						}} defaultChecked color="warning" />
 					</Grid>
 					<Grid style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }} >
-						<BuyForm itemsSelected={itemsSelected} setItemsSelected={setItemsSelected} />
+						<div style={{ marginRight: '20px' }}>
+							<BuyForm itemsSelected={itemsSelected} setItemsSelected={setItemsSelected} />
+						</div>
 						<Login />
 					</Grid>
 				</Grid>

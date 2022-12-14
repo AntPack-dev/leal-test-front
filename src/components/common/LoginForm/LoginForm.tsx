@@ -5,7 +5,6 @@ import { useContext, useState } from "react";
 import { LoginFormStyle } from '../../../styles/components/common/LoginForm/LoginFormStyle';
 import { SmallTitle, PrincipalInput, PrincipalButton } from '../../../styles/GlobalStyle';
 
-import AuthContext from "../../../context/auth";
 
 const validate = (values: any) => {
   const errors: any = {};
@@ -25,9 +24,12 @@ const validate = (values: any) => {
   return errors;
 }
 
+const handleLogin = (values: any) => {
+  console.log(values.password)
+}
+
 const LoginForm = ({ setForm }: { setForm: any }) => {
   const history = useHistory();
-  const { onLogin } = useContext<any>(AuthContext);
   const [error, setError] = useState('')
 
   const formik = useFormik({
@@ -40,16 +42,6 @@ const LoginForm = ({ setForm }: { setForm: any }) => {
       handleLogin(values);
     }
   });
-
-  const handleLogin = async (values: any) => {
-    const { email, password } = values;
-    try {
-      await onLogin(email, password, history);
-    } catch (e) {
-      console.log('error', e);
-      setError(`Error: ${e}`)
-    }
-  }
 
   return (
     <>

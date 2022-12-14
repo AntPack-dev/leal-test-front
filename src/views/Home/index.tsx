@@ -5,12 +5,12 @@ import parse from 'html-react-parser';
 
 import bgImage from '../../assets/images/Screen_Shot_2022-12-13_at_5.44.17_PM-removebg-preview.png'
 
-import AuthContext from '../../context/auth';
 import Login from '../Login';
 import MediaCard from '../../components/common/card/MediaCard';
 import { Grid } from '@mui/material';
 import Header from '../../components/layouts/Header';
 import CustomTable from '../../components/common/table/table';
+import axios from 'axios';
 
 const data = {
   id: 7,
@@ -152,40 +152,52 @@ const data = {
 
 const Home = () => {
   const history = useHistory();
-  const { isAuthenticated, getProducts, products, getOrder, getWallet } = useContext<any>(AuthContext);
   const [itemsSelected, setItemsSelected] = useState<any>()
+  const [products, setProducts] = useState<any>()
   const [theme, setTheme] = useState<any>(true)
 
   const handleGetProducts = async () => {
-    try {
-      await getProducts(history);
-    } catch (e) {
-      console.log('error', e);
-    }
+    axios({
+      method: 'get',
+      url: 'http://3.138.205.220:4030/api-v1/products',
+    })
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   const handleGetOrder = async (token: any, history: any) => {
-    try {
-      await getOrder(history, token);
-    } catch (e) {
-      console.log('error', e);
-    }
+
   }
   const handleGetWallet = async (token: any, history: any) => {
-    try {
-      await getWallet(history, token);
-    } catch (e) {
-      console.log('error', e);
-    }
+
   }
 
   useEffect(() => {
-    // Si no esta autenticado
-    handleGetProducts()
-    // handleGetOrder('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVkZW50aWFsIjoidGVzdCB2MiIsImV4cCI6MTY3MzU2NTcxNzc1NSwidXNlcl9pZCI6NH0.Tb5dftU-qn9wDo-92Lw_0FoTaY88rV8MPPv1Jp4YqQA', history)
-    handleGetWallet('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVkZW50aWFsIjoidGVzdCB2MiIsImV4cCI6MTY3MzU2NTcxNzc1NSwidXNlcl9pZCI6NH0.Tb5dftU-qn9wDo-92Lw_0FoTaY88rV8MPPv1Jp4YqQA', history)
-    if (!isAuthenticated()) history.replace('/');
     // eslint-disable-next-line
+    handleGetProducts()
+    var data = JSON.stringify({
+      "email": "yeisson.gutierrez@antpack.co",
+      "password": "yei12345"
+    });
+
+    axios({
+      method: 'post',
+      url: 'http://3.138.205.220:8084/api-v1/auth/login',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: data
+    })
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }, [])
 
 

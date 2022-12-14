@@ -7,7 +7,6 @@ import { useHistory } from 'react-router-dom';
 import Login from '../views/Login';
 import Home from '../views/Home/index';
 
-import ResetPassword from '../views/Auth/ResetPassword';
 import Page404 from '../views/404/404';
 
 
@@ -19,7 +18,6 @@ const Routes = () => {
         >
           <Route path="/" exact component={Home} />
           <Route path="/home" component={Home} />
-          <Route path="/auth/password-update" component={ResetPassword} />
           <Route path="*" component={Page404} />
           {/* <Route path="/trivia" component={Game} /> */}
 
