@@ -62,8 +62,8 @@ export default function CustomTable({ data }: tablesProps) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((row: any) => (
-            <StyledTableRow key={row.order_id}>
+          {data.map((row: any, index: number) => (
+            <StyledTableRow key={`rowId${row.order_id}${index}`}>
               <StyledTableCell component="th" scope="row">
                 {row.order_id}
               </StyledTableCell>
