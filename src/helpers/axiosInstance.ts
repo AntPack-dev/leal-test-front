@@ -1,8 +1,8 @@
 /* eslint-disable consistent-return */
 import axios, { AxiosRequestHeaders } from 'axios';
 
-const AxiosInstace = (history: any = null, tokenHeader?: any) => {
-  const baseURL = 'http://3.138.205.220:4030';
+const AxiosInstace = (tokenHeader?: any) => {
+  const baseURL = 'http://3.138.205.220:4030/';
 
   const headers: AxiosRequestHeaders = {};
 
@@ -10,7 +10,7 @@ const AxiosInstace = (history: any = null, tokenHeader?: any) => {
     const token = localStorage.getItem('@admin-token');
 
     if(tokenHeader){
-      headers.Authorization = tokenHeader;
+      headers.Authorization = 'Bearer ' + tokenHeader;
     } else if (token) {
       headers.Authorization = token;
     }
@@ -22,8 +22,8 @@ const AxiosInstace = (history: any = null, tokenHeader?: any) => {
     baseURL,
     headers,
   });
-  axios.defaults.headers.post['Content-Type'] = 'application/json';
-  axios.defaults.headers.put['Content-Type'] = 'application/json';
+  // axios.defaults.headers.post['Content-Type'] = 'application/json';
+  // axios.defaults.headers.put['Content-Type'] = 'application/json';
   axios.defaults.headers.get['Content-Type'] = 'application/json';
 
   axiosInstance.interceptors.request.use((request) => request);
@@ -40,12 +40,7 @@ const AxiosInstace = (history: any = null, tokenHeader?: any) => {
         });
       }
       if (error.response.status === 403 || error.response.status === 401) {
-        if (history) {
-          //history.replace('/');
-        } else {
-          // @ts-ignore
-          // window.location = '/';
-        }
+
       } else {
         return new Promise((resolve, reject) => {
           reject(error);

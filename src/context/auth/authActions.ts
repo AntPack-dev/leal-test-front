@@ -1,8 +1,9 @@
+
 import axiosInstance from "../../helpers/axiosInstance";
 
 export const login = (email: string, password: string, history: any) => {
   return axiosInstance(history)
-    .post('/api/auth/login', { email, password });
+    .post('/api-v1/auth/login', { email, password });
 }
 
 export const register = (data: UserRegister, history: any) => {
@@ -10,9 +11,19 @@ export const register = (data: UserRegister, history: any) => {
     .post('/users/register', data);
 }
 
+export const order = (token: any) => {
+  return axiosInstance( token)
+    .post('/api-v1/orders');
+}
+
+export const wallet = (token: any) => {
+  return axiosInstance(token)
+   .get('/api-v1/wallet');
+}
+
 export const getProducts = (history: any) => {
   return axiosInstance()
-    .get('/api/products/');
+    .get('/api-v1/products');
 }
 
 export interface UserRegister {

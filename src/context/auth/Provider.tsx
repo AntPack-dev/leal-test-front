@@ -1,28 +1,27 @@
 import { useCallback, useState } from 'react';
 
 import AuthContext from './index';
-import { getProducts, login, register, UserRegister } from "./authActions";
+import { getProducts, login, register, UserRegister, order, wallet } from "./authActions";
 import { toast } from 'react-toastify';
 
 const AuthProvider = ({ children }: any) => {
 
   const [products, setProducts] = useState([]);
+  const [currentOrder, setOrder] = useState([]);
+  const [currentWallet, setWallet] = useState([]);
 
   const HandleLogin = useCallback((email, password, history) => {
     return new Promise((resolve, reject) => {
       login(email, password, history)
         .then((res) => {
-          const { data, headers } = res;
+          const { data } = res;
 
-          localStorage.setItem('@admin-isAuth', 'true');
-          localStorage.setItem('@admin-token', headers?.authorization);
+          localStorage.setItem('@user-isAuth', 'true');
+          localStorage.setItem('@user-token', data.token);
           localStorage.setItem(
-            '@admin-data',
+            '@user-data',
             JSON.stringify({
               email: data?.user?.email,
-              username: data?.user?.username,
-              name: data?.user?.name,
-              country: data?.user?.country,
             }),
           );
           resolve({ status: 'ok' });
@@ -74,6 +73,34 @@ const AuthProvider = ({ children }: any) => {
       });
   }, []);
 
+  const HandleOrder = useCallback((history, token) => {
+    order(token)
+      .then((res) => {
+        setOrder(res.data)
+      })
+      .catch((error) => {
+        if (error.response?.data?.error) {
+          toast.error(`Credenciales inválidas: ${error.response?.data?.message}`);
+        } else {
+          toast.error("Connection error");
+        }
+      });
+  }, []);
+
+  const HandleWallet = useCallback((history, token) => {
+    wallet(token)
+    // .then((res) => {
+    //   setWallet(res.data)
+    // })
+    // .catch((error) => {
+    //   if (error.response?.data?.error) {
+    //     toast.error(`Credenciales inválidas: ${error.response?.data?.message}`);
+    //   } else {
+    //     toast.error("Connection error");
+    //   }
+    // });
+  }, []);
+
   const handleLogout = useCallback((history) => {
     localStorage.setItem('@admin-isAuth', 'false');
     localStorage.removeItem('@admin-token');
@@ -82,15 +109,22 @@ const AuthProvider = ({ children }: any) => {
     history.push('/')
   }, []);
 
+
+
+
   return (
     <AuthContext.Provider
       value={{
-        isAuthenticated: () => JSON.parse(localStorage.getItem('@admin-isAuth') || 'false'),
+        isAuthenticated: () => JSON.parse(localStorage.getItem('@user-isAuth') || 'false'),
         onLogin: HandleLogin,
         onRegister: HandleRegister,
         onLogout: handleLogout,
         getProducts: HandleGetProducts,
-        products
+        getOrder: HandleOrder,
+        getWallet: HandleWallet,
+        products,
+        currentOrder,
+        wallet
       }}
     >
       {children}

@@ -4,6 +4,7 @@ import { Color } from '../../../GlobalStyle';
 
 export const MediaCardStyle = style({
   transition: 'transform 0.5s',
+  height: '320px',
   $nest: {
     '& .itemImage': {
       zIndex: 1,
@@ -17,8 +18,5 @@ export const MediaCardStyle = style({
     '& .cardBody': {
       zIndex: 10,
     },
-    '& .css-1glh7o3': {
-      padding: 0
-    }
   }
 })

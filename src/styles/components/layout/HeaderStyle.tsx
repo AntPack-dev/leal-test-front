@@ -172,6 +172,13 @@ export const HeaderStyle = style({
           background: '#050505',
         },
       }
+    },
+    '& .css-1glh7o3': {
+      padding: 0,
+    },
+    '& .css-1ytz6dp': {
+      height: 'auto',
+      backgroundColor: 'inherit'
     }
   },
 });

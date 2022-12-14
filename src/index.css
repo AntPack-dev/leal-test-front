@@ -106,10 +106,36 @@ code {
   margin: auto;
 }
 
+.pointSeccion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 200px;
+  width: 80%;
+  margin: auto;
+  overflow: hidden;
+}
+
+.pointSeccion > img {
+  width: 100%;
+}
+
+
+
+.pointSeccionTable {
+  max-height: 400px;
+  overflow: scroll;
+}
+
 @media (max-width:700px) {
   .wrapper {
     width: 100%;
   }
+
+  .pointSeccion  img {
+    width: 300px;
+  }
+
   ._contentForm{
     /* max-height: 100%; */
     overflow-x: hidden;

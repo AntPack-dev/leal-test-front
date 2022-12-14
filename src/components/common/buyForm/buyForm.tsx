@@ -10,8 +10,10 @@ import Skeleton from '@mui/material/Skeleton';
 import Typography from '@mui/material/Typography';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import ItemBuyList from '../itemBuyList/itemBuyList';
+import CustomTable from '../table/table';
 
 const drawerBleeding = 56;
+
 
 interface Props {
   /**
@@ -19,7 +21,6 @@ interface Props {
    * You won't need it on your project.
    */
   window?: () => Window;
-  product: any,
   setItemsSelected: any,
   itemsSelected: any
 }
@@ -44,7 +45,7 @@ const Puller = styled(Box)(({ theme }) => ({
   left: 'calc(50% - 15px)',
 }));
 
-export default function BuyForm({ window, product, setItemsSelected, itemsSelected }: Props) {
+export default function BuyForm({ window, setItemsSelected, itemsSelected }: Props) {
   const [open, setOpen] = React.useState(false);
 
   const toggleDrawer = (newOpen: boolean) => () => {
@@ -92,7 +93,8 @@ export default function BuyForm({ window, product, setItemsSelected, itemsSelect
           }}
         >
           <Puller />
-          <Typography sx={{ p: 2, color: 'text.secondary' }}> products</Typography>
+
+          <Typography sx={{ p: 2, color: 'text.secondary' }}>{(itemsSelected ? itemsSelected.length : 0)} products</Typography>
         </StyledBox>
         <StyledBox
           sx={{

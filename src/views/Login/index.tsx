@@ -15,8 +15,6 @@ const Login = () => {
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
 
-	const [isLoading, setIsLoading] = useState(true);
-
 	const history = useHistory();
 	const { isAuthenticated }: any = useContext(AuthContext);
 
@@ -25,7 +23,6 @@ const Login = () => {
 	const checkIfUserIsAuth = () => {
 		// Si esta autenticado
 		if (isAuthenticated()) history.push('/home');
-		else setIsLoading(false);
 	};
 
 	checkIfUserIsAuthRef.current = checkIfUserIsAuth;
@@ -34,9 +31,6 @@ const Login = () => {
 		checkIfUserIsAuthRef?.current()?.catch(null);
 	}, []);
 
-	if (isLoading) {
-		return <h1>Loading...</h1>;
-	}
 
 	return (
 		<div className={LoginStyle}>

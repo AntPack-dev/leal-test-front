@@ -48,7 +48,6 @@ export default function MediaCard({ data, itemsSelected, setItemsSelected }: med
           }
           toast.success(`Added: ${data.name}`)
         }} style={{ height: '30px' }} variant='outlined'>add</Button>
-        <BuyForm itemsSelected={itemsSelected} setItemsSelected={setItemsSelected} product={data} />
       </CardActions>
     </Card>
   );
